@@ -1,0 +1,7 @@
+{
+  "error": {
+    "type": "Unauthorized",
+    "message": "Unauthorized Request",
+    "code": "HTTP401"
+  }
+}

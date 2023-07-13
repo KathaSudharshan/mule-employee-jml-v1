@@ -1,0 +1,7 @@
+{
+  "error": {
+    "type": "Bad Request",
+    "message": "Bad Request error",
+    "code": "HTTP400"
+  }
+}

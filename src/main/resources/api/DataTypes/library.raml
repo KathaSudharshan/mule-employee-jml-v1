@@ -1,0 +1,70 @@
+#%RAML 1.0 Library
+usage: Employee Data Types library
+types:
+  employeeType:
+    type: object
+    properties:
+      id:
+        displayName: Employee Id
+        description: Employee unique Id
+        type: integer
+        required: true
+        example: 1234
+      name:
+        displayName: Employee Name
+        description: Name of the employee
+        type: string
+        required: true
+        example: Sudharshan
+      gender:
+        displayName: Employee Gender
+        description: Gender of an employee
+        type: string
+        required: true
+        example: Male
+      designation:
+        displayName: Employee Designation
+        description: Designation of an employee
+        type: string
+        required: true
+        example: lead
+      department:
+        displayName: Employee Department
+        description: Department of an employee
+        type: string
+        required: false
+        example: Integration
+      location:
+        displayName: Employee Location
+        description: Location of the employee
+        type: string
+        required: false
+        example: UK
+  errorSchemaType:
+    type: object
+    properties:
+      error:
+        type: errorDataType
+  errorDataType:
+    type: object
+    properties:
+      type:
+        displayName: Error Type
+        description: Type of an error
+        type: string
+        example: BAD Request
+      message:
+        displayName: Error Message
+        description: Message of Error description
+        type: string
+        example: Request failed due to bad request
+      code:
+        displayName: Error Code
+        description: Error status code
+        type: string
+        example: HTTP400
+
+
+
+      
+    

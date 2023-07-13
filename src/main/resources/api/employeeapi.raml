@@ -1,0 +1,95 @@
+#%RAML 1.0
+title: " Employee API"
+baseUri: https://employee-api:8081/api
+description: |
+  To manage employee account
+mediaType:
+  - application/json
+version: v1
+protocols:
+  - HTTPS
+securedBy:
+  - SecurityScheme
+traits:
+  errorTrait: !include traits/erorrTrait.raml
+uses: 
+  employee: DataTypes/library.raml
+types:
+  employeeType: employee.employeeType
+  502BadGatewayErrorType: 
+    type: employee.errorSchemaType
+    example:
+        error:
+          type: Bad Gateway
+          message: Timeout error
+          code: HTTP502
+
+  400BadRequestErrorType:
+    type: employee.errorSchemaType
+    example:
+        error:
+          type: BAD-REQUEST
+          message: Bad request error
+          code: HTTP400      
+  401unauthorizedErrorType:
+    type: employee.errorSchemaType    
+    example:
+      strict: true
+      value:
+        error:
+          type: UNAUTHORIZED
+          message: Request Unauthorized to perform
+          code: HTTP401
+annotationTypes:
+  Types:
+    type: any
+securitySchemes:
+  SecurityScheme:
+    type: Basic Authentication
+
+/account:
+  post:
+    is: [errorTrait]
+    displayName: Creation of employee account
+    headers:
+      X-Correlation-Id:
+        example: Example
+        type: string
+    body:
+      application/json:
+        type: employeeType
+        example: !include examples/createEmployee.json
+    responses:
+      "200":
+        description: |
+          Employee Account Creation Response
+        body:
+          application/json:
+            type: employeeType
+            example: !include examples/createEmployee.json
+  /{empId}:
+    get:
+      is: [errorTrait]
+      displayName: Retrieve Employee Details
+      description: Retrieve Employee details based on employee id
+      queryParameters:
+        department?:
+          example: Example
+          type: string
+        role?:
+          example: Example
+          type: string
+      headers:
+        X-Correlation-Id:
+          example: Example
+          type: string
+      responses:
+        "200":
+          body:
+            application/json:
+              type: array
+              items: employeeType
+              example: !include examples/getEmployeeResponse.json
+    uriParameters:
+      empId:
+        type: string

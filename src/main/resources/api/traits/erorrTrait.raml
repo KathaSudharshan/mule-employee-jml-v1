@@ -1,0 +1,17 @@
+#%RAML 1.0 Trait
+responses:
+  "502":
+    body:
+      application/json:
+        type: 502BadGatewayErrorType
+        example: !include ../examples/502ErrorResponse.json
+  "400":
+    body:
+      application/json:
+        type: 400BadRequestErrorType
+        example: !include ../examples/400ErrorResponse.json
+  "401":
+    body:
+      application/json:
+        type: 401unauthorizedErrorType
+        example: !include ../examples/401ErrorResponse.json

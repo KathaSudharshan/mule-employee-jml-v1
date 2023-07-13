@@ -1,0 +1,7 @@
+{
+  "error": {
+    "type": "Bad Gateway",
+    "message": "Timeout error",
+    "code": "HTTP502"
+  }
+}
